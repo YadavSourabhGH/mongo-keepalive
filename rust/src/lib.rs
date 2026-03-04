@@ -40,7 +40,7 @@ pub fn parse_interval(interval: &str) -> Result<Duration, String> {
 async fn ping_with_retry(client: &Client) {
     let db = client.database("admin");
     for attempt in 1..=MAX_RETRIES {
-        match db.run_command(doc! { "ping": 1 }).await {
+        match db.run_command(doc! { "ping": 1 }, None).await {
             Ok(result) => {
                 info!("[mongo-keepalive] Ping successful: {:?}", result);
                 return;

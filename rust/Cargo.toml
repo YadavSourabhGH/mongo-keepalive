@@ -1,12 +1,22 @@
 [package]
 name = "mongo-keepalive"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2021"
+authors = ["YadavSourabhGH"]
 description = "Keep MongoDB Atlas free-tier clusters alive by sending periodic ping commands"
 license = "MIT"
 repository = "https://github.com/YadavSourabhGH/mongo-keepalive"
-keywords = ["mongodb", "atlas", "keepalive", "ping"]
+homepage = "https://github.com/YadavSourabhGH/mongo-keepalive#readme"
+documentation = "https://docs.rs/mongo-keepalive"
+keywords = ["mongodb", "atlas", "keepalive", "ping", "database"]
 categories = ["database"]
+readme = "README.md"
+include = [
+    "src/**/*",
+    "Cargo.toml",
+    "README.md",
+    "LICENSE"
+]
 
 [dependencies]
 mongodb = "2"

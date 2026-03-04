@@ -41,7 +41,7 @@ void _log(String message, [String level = 'INFO']) {
 Future<void> _pingWithRetry(Db db) async {
   for (var attempt = 1; attempt <= _maxRetries; attempt++) {
     try {
-      final result = await db.command({'ping': 1});
+      final result = await db.collection('\$cmd').findOne({'ping': 1});
       _log('Ping successful: $result');
       return;
     } catch (e) {

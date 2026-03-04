@@ -1,0 +1,69 @@
+# ==========================================
+# Build Outputs & Dependencies
+# ==========================================
+
+# Node.js
+node/node_modules/
+node/package-lock.json
+
+# Python
+python/dist/
+python/build/
+python/*.egg-info/
+python/mongo_keepalive.egg-info/
+python/__pycache__/
+python/.eggs/
+*.pyc
+*.pyo
+
+# Go
+go/vendor/
+
+# Rust
+rust/target/
+
+# Java
+java/target/
+java/*.class
+
+# PHP
+php/vendor/
+php/composer.lock
+
+# Ruby
+ruby/*.gem
+
+# C#
+csharp/bin/
+csharp/obj/
+csharp/*.nupkg
+
+# Dart
+dart/.dart_tool/
+dart/pubspec.lock
+dart/.packages
+
+# Kotlin
+kotlin/target/
+kotlin/*.class
+
+# ==========================================
+# IDE & OS Files
+# ==========================================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# Secrets & Credentials (NEVER commit these)
+# ==========================================
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+secrets.json

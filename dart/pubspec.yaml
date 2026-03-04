@@ -2,6 +2,14 @@ name: mongo_keepalive
 description: Keep MongoDB Atlas free-tier clusters alive by sending periodic ping commands
 version: 1.0.0
 homepage: https://github.com/YadavSourabhGH/mongo-keepalive
+repository: https://github.com/YadavSourabhGH/mongo-keepalive
+issue_tracker: https://github.com/YadavSourabhGH/mongo-keepalive/issues
+
+topics:
+  - mongodb
+  - atlas
+  - database
+  - automation
 
 environment:
   sdk: ">=3.0.0 <4.0.0"

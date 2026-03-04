@@ -8,14 +8,23 @@
     "atlas",
     "keepalive",
     "ping",
-    "free-tier"
+    "free-tier",
+    "m0",
+    "database",
+    "automation",
+    "cluster",
+    "maintenance"
   ],
-  "author": "",
+  "author": "YadavSourabhGH",
   "license": "MIT",
+  "homepage": "https://github.com/YadavSourabhGH/mongo-keepalive#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/YadavSourabhGH/mongo-keepalive.git",
     "directory": "node"
+  },
+  "bugs": {
+    "url": "https://github.com/YadavSourabhGH/mongo-keepalive/issues"
   },
   "engines": {
     "node": ">=14.0.0"

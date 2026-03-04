@@ -4,6 +4,16 @@
   "version": "1.0.0",
   "type": "library",
   "license": "MIT",
+  "authors": [
+    {
+      "name": "YadavSourabhGH"
+    }
+  ],
+  "homepage": "https://github.com/YadavSourabhGH/mongo-keepalive",
+  "support": {
+    "issues": "https://github.com/YadavSourabhGH/mongo-keepalive/issues",
+    "source": "https://github.com/YadavSourabhGH/mongo-keepalive"
+  },
   "require": {
     "php": ">=8.1",
     "mongodb/mongodb": "^1.19"
@@ -18,6 +28,11 @@
     "atlas",
     "keepalive",
     "ping",
-    "free-tier"
+    "free-tier",
+    "m0",
+    "database",
+    "automation",
+    "cluster",
+    "maintenance"
   ]
 }
