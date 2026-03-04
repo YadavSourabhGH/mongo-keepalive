@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mongo-keepalive - Documentation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-leaf"></i>
+                <span>mongo-keepalive</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#getting-started" class="nav-link">Getting Started</a>
+                <a href="#usage" class="nav-link">Usage</a>
+                <a href="#api" class="nav-link">API</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="https://github.com/YadavSourabhGH/mongo-keepalive" target="_blank" class="nav-link">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1><i class="fas fa-database"></i> mongo-keepalive</h1>
+                <p class="hero-subtitle">Keep MongoDB Atlas free-tier clusters alive with periodic ping commands</p>
+                <div class="badges">
+                    <span class="badge npm"><i class="fab fa-npm"></i> npm</span>
+                    <span class="badge python"><i class="fab fa-python"></i> Python</span>
+                    <span class="badge rust"><i class="fab fa-rust"></i> Rust</span>
+                    <span class="badge go"><i class="fab fa-golang"></i> Go</span>
+                    <span class="badge java"><i class="fab fa-java"></i> Java</span>
+                    <span class="badge csharp">C#</span>
+                    <span class="badge ruby"><i class="fab fa-gem"></i> Ruby</span>
+                    <span class="badge php"><i class="fab fa-php"></i> PHP</span>
+                    <span class="badge dart"><i class="fas fa-code"></i> Dart</span>
+                    <span class="badge kotlin">Kotlin</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <div class="problem-content">
+                <h2><i class="fas fa-exclamation-circle"></i> The Problem</h2>
+                <p>MongoDB Atlas pauses free-tier (M0) clusters after <strong>60 days of inactivity</strong>. When your cluster is paused, you'll need to manually resume it before you can connect again.</p>
+                <p>mongo-keepalive automatically sends periodic ping commands to keep your cluster active, ensuring it never gets paused.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2><i class="fas fa-sparkles"></i> Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3>Multi-Language</h3>
+                    <p>Available in 10 programming languages and frameworks</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h3>Flexible Intervals</h3>
+                    <p>Configure from minutes to hours based on your needs</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure</h3>
+                    <p>Uses official MongoDB drivers with standard connection strings</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-redo"></i>
+                    </div>
+                    <h3>Error Resilient</h3>
+                    <p>Automatic retry logic with exponential backoff</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Observable</h3>
+                    <p>Built-in logging for monitoring and debugging</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Zero-Config</h3>
+                    <p>Works out of the box with sensible 12-hour interval defaults</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Getting Started Section -->
+    <section id="getting-started" class="getting-started">
+        <div class="container">
+            <h2><i class="fas fa-play-circle"></i> Getting Started</h2>
+            
+            <div class="language-tabs">
+                <div class="tabs">
+                    <button class="tab-btn active" data-lang="node">Node.js</button>
+                    <button class="tab-btn" data-lang="python">Python</button>
+                    <button class="tab-btn" data-lang="rust">Rust</button>
+                    <button class="tab-btn" data-lang="go">Go</button>
+                    <button class="tab-btn" data-lang="java">Java</button>
+                    <button class="tab-btn" data-lang="csharp">C#</button>
+                    <button class="tab-btn" data-lang="ruby">Ruby</button>
+                    <button class="tab-btn" data-lang="php">PHP</button>
+                    <button class="tab-btn" data-lang="dart">Dart</button>
+                    <button class="tab-btn" data-lang="kotlin">Kotlin</button>
+                </div>
+
+                <!-- Node.js -->
+                <div class="tab-content active" id="node">
+                    <h3>Installation</h3>
+                    <pre><code class="lang-bash">npm install mongo-keepalive</code></pre>
+                    <h3>Basic Usage</h3>
+                    <pre><code class="lang-javascript">const { startKeepAlive } = require('mongo-keepalive');
+
+// Start keep-alive with default 12-hour interval
+const handle = await startKeepAlive('mongodb+srv://user:pass@cluster.mongodb.net/db');
+
+// Or with custom interval
+const handle = await startKeepAlive(
+    'mongodb+srv://user:pass@cluster.mongodb.net/db',
+    '6h'
+);
+
+// Stop when needed
+handle.stop();</code></pre>
+                </div>
+
+                <!-- Python -->
+                <div class="tab-content" id="python">
+                    <h3>Installation</h3>
+                    <pre><code class="lang-bash">pip install mongo-keepalive</code></pre>
+                    <h3>Basic Usage</h3>
+                    <pre><code class="lang-python">from mongo_keepalive import start_keepalive
+
+# Start keep-alive with default 12-hour interval
+handle = start_keepalive('mongodb+srv://user:pass@cluster.mongodb.net/db')
+
+# Or with custom interval
+handle = start_keepalive(
+    'mongodb+srv://user:pass@cluster.mongodb.net/db',
+    interval='6h'
+)
+
+# Stop when needed
+handle.stop()</code></pre>
+                </div>
+
+                <!-- Rust -->
+                <div class="tab-content" id="rust">
+                    <h3>Installation</h3>
+                    <pre><code class="lang-toml">[dependencies]
+mongo-keepalive = "1.0"
+tokio = { version = "1", features = ["rt-multi-thread", "macros"] }</code></pre>
+                    <h3>Basic Usage</h3>
+                    <pre><code class="lang-rust">#[tokio::main]
+async fn main() {
+    use mongo_keepalive::start_keepalive;
+
+    // Start keep-alive with default 12-hour interval
+    let handle = start_keepalive(
+        "mongodb+srv://user:pass@cluster.mongodb.net/db"
+    ).await.unwrap();
+
+    // Or with custom interval
+    let handle = start_keepalive_with_interval(
+        "mongodb+srv://user:pass@cluster.mongodb.net/db",
+        "6h"
+    ).await.unwrap();
+
+    // Stop when needed
+    handle.stop().await;
+}</code></pre>
+                </div>
+
+                <!-- Go -->
+                <div class="tab-content" id="go">
+                    <h3>Installation</h3>
+                    <pre><code class="lang-bash">go get github.com/YadavSourabhGH/mongo-keepalive/go@v1.0.0</code></pre>
+                    <h3>Basic Usage</h3>
+                    <pre><code class="lang-go">package main
+
+import (
+    "log"
+    "github.com/YadavSourabhGH/mongo-keepalive/go"
+)
+
+func main() {
+    // Start keep-alive with default 12-hour interval
+    handle, err := mongokeepalive.StartKeepAlive(
+        "mongodb+srv://user:pass@cluster.mongodb.net/db",
+    )
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    // Stop when needed
+    defer handle.Stop()
+}</code></pre>
+                </div>
+
+                <!-- Java -->
+                <div class="tab-content" id="java">
+                    <h3>Installation (Maven)</h3>
+                    <pre><code class="lang-xml">&lt;dependency&gt;
+    &lt;groupId&gt;com.mongokeepalive&lt;/groupId&gt;
+    &lt;artifactId&gt;mongo-keepalive&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+                    <h3>Basic Usage</h3>
+                    <pre><code class="lang-java">import com.mongokeepalive.KeepAlive;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        // Start keep-alive with default 12-hour interval
+        var handle = KeepAlive.startKeepAlive(
+            "mongodb+srv://user:pass@cluster.mongodb.net/db"
+        );
+
+        // Or with custom interval
+        var handle = KeepAlive.startKeepAlive(
+            "mongodb+srv://user:pass@cluster.mongodb.net/db",
+            "6h"
+        );
+
+        // Stop when needed
+        handle.stop();
+    }
+}</code></pre>
+                </div>
+
+                <!-- C# -->
+                <div class="tab-content" id="csharp">
+                    <h3>Installation</h3>
+                    <pre><code class="lang-bash">dotnet add package MongoKeepAlive</code></pre>
+                    <h3>Basic Usage</h3>
+                    <pre><code class="lang-csharp">using MongoKeepAlive;
+
+// Start keep-alive with default 12-hour interval
+var keepAlive = KeepAlive.StartKeepAlive(
+    "mongodb+srv://user:pass@cluster.mongodb.net/db"
+);
+
+// Or with custom interval
+var keepAlive = KeepAlive.StartKeepAlive(
+    "mongodb+srv://user:pass@cluster.mongodb.net/db",
+    "6h"
+);
+
+// Graceful shutdown
+keepAlive.Dispose();</code></pre>
+                </div>
+
+                <!-- Ruby -->
+                <div class="tab-content" id="ruby">
+                    <h3>Installation</h3>
+                    <pre><code class="lang-bash">gem install mongo-keepalive</code></pre>
+                    <h3>Basic Usage</h3>
+                    <pre><code class="lang-ruby">require 'keepalive'
+
+# Start keep-alive with default 12-hour interval
+handle = Keepalive::Handle.start(
+    'mongodb+srv://user:pass@cluster.mongodb.net/db'
+)
+
+# Or with custom interval
+handle = Keepalive::Handle.start(
+    'mongodb+srv://user:pass@cluster.mongodb.net/db',
+    interval: '6h'
+)
+
+# Stop when needed
+handle.stop</code></pre>
+                </div>
+
+                <!-- PHP -->
+                <div class="tab-content" id="php">
+                    <h3>Installation</h3>
+                    <pre><code class="lang-bash">composer require yadavsourabhgh/mongo-keepalive</code></pre>
+                    <h3>Basic Usage</h3>
+                    <pre><code class="lang-php">&lt;?php
+require 'vendor/autoload.php';
+
+use MongoKeepAlive\KeepAlive;
+
+// Start keep-alive with default 12-hour interval
+KeepAlive::startKeepAlive(
+    'mongodb+srv://user:pass@cluster.mongodb.net/db'
+);
+
+// Or with custom interval
+KeepAlive::startKeepAlive(
+    'mongodb+srv://user:pass@cluster.mongodb.net/db',
+    '6h'
+);</code></pre>
+                </div>
+
+                <!-- Dart -->
+                <div class="tab-content" id="dart">
+                    <h3>Installation</h3>
+                    <pre><code class="lang-bash">dart pub add mongo_keepalive</code></pre>
+                    <h3>Basic Usage</h3>
+                    <pre><code class="lang-dart">import 'package:mongo_keepalive/keepalive.dart';
+
+void main() async {
+    // Start keep-alive with default 12-hour interval
+    final handle = await startKeepAlive(
+        uri: 'mongodb+srv://user:pass@cluster.mongodb.net/db',
+    );
+
+    // Or with custom interval
+    final handle = await startKeepAlive(
+        uri: 'mongodb+srv://user:pass@cluster.mongodb.net/db',
+        interval: '6h',
+    );
+
+    // Stop when needed
+    await handle.stop();
+}</code></pre>
+                </div>
+
+                <!-- Kotlin -->
+                <div class="tab-content" id="kotlin">
+                    <h3>Installation</h3>
+                    <pre><code class="lang-xml">&lt;dependency&gt;
+    &lt;groupId&gt;com.mongokeepalive&lt;/groupId&gt;
+    &lt;artifactId&gt;mongo-keepalive-kotlin&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+                    <h3>Basic Usage</h3>
+                    <pre><code class="lang-kotlin">import com.mongokeepalive.KeepAlive
+
+fun main() {
+    // Start keep-alive with default 12-hour interval
+    val handle = KeepAlive.startKeepAlive(
+        "mongodb+srv://user:pass@cluster.mongodb.net/db"
+    )
+
+    // Or with custom interval
+    val handle = KeepAlive.startKeepAlive(
+        "mongodb+srv://user:pass@cluster.mongodb.net/db",
+        "6h"
+    )
+
+    // Stop when needed
+    handle.stop()
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Usage Section -->
+    <section id="usage" class="usage">
+        <div class="container">
+            <h2><i class="fas fa-code"></i> Configuration</h2>
+            
+            <div class="config-grid">
+                <div class="config-card">
+                    <h3><i class="fas fa-clock"></i> Interval Formats</h3>
+                    <p>The interval parameter accepts various formats:</p>
+                    <pre><code>"5m"    // 5 minutes
+"30m"   // 30 minutes
+"1h"    // 1 hour
+"6h"    // 6 hours (recommended)
+"12h"   // 12 hours (default)
+"24h"   // 24 hours
+"1d"    // 1 day</code></pre>
+                </div>
+
+                <div class="config-card">
+                    <h3><i class="fas fa-link"></i> Connection String</h3>
+                    <p>Use standard MongoDB connection strings:</p>
+                    <pre><code>// Standard format
+mongodb://user:pass@host:27017/db
+
+// MongoDB Atlas (SRV)
+mongodb+srv://user:pass@cluster.mongodb.net/db
+
+// Local development
+mongodb://localhost:27017/local</code></pre>
+                </div>
+
+                <div class="config-card">
+                    <h3><i class="fas fa-sync"></i> Retry Logic</h3>
+                    <p>Automatic retry on failure:</p>
+                    <ul>
+                        <li>Max retries: 3 attempts</li>
+                        <li>Delay between retries: 5 seconds</li>
+                        <li>Exponential backoff supported</li>
+                        <li>Automatic reconnection on network failures</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Section -->
+    <section id="api" class="api">
+        <div class="container">
+            <h2><i class="fas fa-book"></i> API Reference</h2>
+            
+            <div class="api-grid">
+                <div class="api-card">
+                    <h3>startKeepAlive(uri, interval?)</h3>
+                    <p><strong>Description:</strong> Initializes and starts the keep-alive process.</p>
+                    <p><strong>Parameters:</strong></p>
+                    <ul>
+                        <li><code>uri</code> (string, required) - MongoDB connection string</li>
+                        <li><code>interval</code> (string, optional) - Ping interval (default: "12h")</li>
+                    </ul>
+                    <p><strong>Returns:</strong> Handle object with control methods</p>
+                </div>
+
+                <div class="api-card">
+                    <h3>handle.stop()</h3>
+                    <p><strong>Description:</strong> Gracefully stops the keep-alive process.</p>
+                    <p><strong>Parameters:</strong> None</p>
+                    <p><strong>Returns:</strong> Promise/Void (language dependent)</p>
+                </div>
+
+                <div class="api-card">
+                    <h3>handle.status()</h3>
+                    <p><strong>Description:</strong> Returns current status of keep-alive.</p>
+                    <p><strong>Parameters:</strong> None</p>
+                    <p><strong>Returns:</strong> Status object with active flag and last ping time</p>
+                </div>
+
+                <div class="api-card">
+                    <h3>Error Handling</h3>
+                    <p>All implementations include comprehensive error handling:</p>
+                    <ul>
+                        <li>Connection failures are logged and retried</li>
+                        <li>Invalid intervals throw descriptive errors</li>
+                        <li>Network timeouts are handled gracefully</li>
+                        <li>All errors include timestamps and details</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3><i class="fas fa-question"></i> Will this increase my MongoDB Atlas costs?</h3>
+                    <p>No. The ping command is extremely lightweight and doesn't count against your storage or compute quotas. Free-tier clusters remain free.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3><i class="fas fa-question"></i> How often should I ping?</h3>
+                    <p>The default 12-hour interval is recommended. This is frequent enough to prevent inactivity while minimizing unnecessary operations.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3><i class="fas fa-question"></i> Can I use this in production?</h3>
+                    <p>Yes! All implementations include proper error handling, logging, and retry logic suitable for production use.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3><i class="fas fa-question"></i> Does this work with paid MongoDB Atlas tiers?</h3>
+                    <p>Yes, but it's primarily designed for free-tier (M0) clusters which auto-pause after 60 days of inactivity.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3><i class="fas fa-question"></i> What happens if my internet connection drops?</h3>
+                    <p>The library will retry failed pings automatically and continue when connectivity is restored.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3><i class="fas fa-question"></i> Can I stop the keep-alive process?</h3>
+                    <p>Yes, each implementation provides a stop() method to gracefully shutdown the background process.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="packages">
+        <div class="container">
+            <h2><i class="fas fa-box"></i> Packages & Registries</h2>
+            
+            <div class="packages-grid">
+                <a href="https://www.npmjs.com/package/mongo-keepalive" target="_blank" class="package-card">
+                    <div class="package-icon"><i class="fab fa-npm"></i></div>
+                    <h3>Node.js</h3>
+                    <p>npm registry</p>
+                    <span class="status published">Published</span>
+                </a>
+
+                <a href="https://pypi.org/project/mongo-keepalive/" target="_blank" class="package-card">
+                    <div class="package-icon"><i class="fab fa-python"></i></div>
+                    <h3>Python</h3>
+                    <p>PyPI</p>
+                    <span class="status published">Published</span>
+                </a>
+
+                <a href="https://crates.io/crates/mongo-keepalive" target="_blank" class="package-card">
+                    <div class="package-icon"><i class="fab fa-rust"></i></div>
+                    <h3>Rust</h3>
+                    <p>crates.io</p>
+                    <span class="status published">Published</span>
+                </a>
+
+                <a href="https://pkg.go.dev/github.com/YadavSourabhGH/mongo-keepalive/go" target="_blank" class="package-card">
+                    <div class="package-icon"><i class="fab fa-golang"></i></div>
+                    <h3>Go</h3>
+                    <p>pkg.go.dev</p>
+                    <span class="status ready">Ready</span>
+                </a>
+
+                <a href="https://central.sonatype.com/artifact/com.mongokeepalive/mongo-keepalive" target="_blank" class="package-card">
+                    <div class="package-icon"><i class="fab fa-java"></i></div>
+                    <h3>Java</h3>
+                    <p>Maven Central</p>
+                    <span class="status ready">Ready</span>
+                </a>
+
+                <a href="https://www.nuget.org/packages/MongoKeepAlive" target="_blank" class="package-card">
+                    <div class="package-icon">C#</div>
+                    <h3>C#/.NET</h3>
+                    <p>NuGet</p>
+                    <span class="status published">Published</span>
+                </a>
+
+                <a href="https://rubygems.org/gems/mongo-keepalive" target="_blank" class="package-card">
+                    <div class="package-icon"><i class="fab fa-gem"></i></div>
+                    <h3>Ruby</h3>
+                    <p>RubyGems</p>
+                    <span class="status published">Published</span>
+                </a>
+
+                <a href="https://packagist.org/packages/yadavsourabhgh/mongo-keepalive" target="_blank" class="package-card">
+                    <div class="package-icon"><i class="fab fa-php"></i></div>
+                    <h3>PHP</h3>
+                    <p>Packagist</p>
+                    <span class="status ready">Ready</span>
+                </a>
+
+                <a href="https://pub.dev/packages/mongo_keepalive" target="_blank" class="package-card">
+                    <div class="package-icon"><i class="fas fa-code"></i></div>
+                    <h3>Dart</h3>
+                    <p>pub.dev</p>
+                    <span class="status published">Published</span>
+                </a>
+
+                <a href="https://central.sonatype.com/artifact/com.mongokeepalive/mongo-keepalive-kotlin" target="_blank" class="package-card">
+                    <div class="package-icon">K</div>
+                    <h3>Kotlin</h3>
+                    <p>Maven Central</p>
+                    <span class="status ready">Ready</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>mongo-keepalive</h4>
+                    <p>Keep MongoDB Atlas free-tier clusters alive</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="https://github.com/YadavSourabhGH/mongo-keepalive" target="_blank">GitHub Repository</a></li>
+                        <li><a href="https://github.com/YadavSourabhGH/mongo-keepalive/issues" target="_blank">Report Issues</a></li>
+                        <li><a href="https://github.com/YadavSourabhGH/mongo-keepalive/blob/main/LICENSE" target="_blank">MIT License</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Supported Languages</h4>
+                    <p>Node.js • Python • Rust • Go • Java • C# • Ruby • PHP • Dart • Kotlin</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 mongo-keepalive. Open source and MIT licensed.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
