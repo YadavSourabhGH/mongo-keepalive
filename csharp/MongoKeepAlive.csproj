@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageId>MongoKeepAlive</PackageId>
+    <Version>1.0.0</Version>
+    <Description>Keep MongoDB Atlas free-tier clusters alive by sending periodic ping commands</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/YadavSourabhGH/mongo-keepalive</RepositoryUrl>
+    <PackageTags>mongodb;atlas;keepalive;ping;free-tier</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.28.0" />
+  </ItemGroup>
+
+</Project>

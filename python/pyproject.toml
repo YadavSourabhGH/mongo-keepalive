@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mongo-keepalive"
+version = "1.0.0"
+description = "Keep MongoDB Atlas free-tier clusters alive by sending periodic ping commands"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+keywords = ["mongodb", "atlas", "keepalive", "ping", "free-tier"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Database",
+]
+dependencies = [
+    "pymongo>=4.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/YadavSourabhGH/mongo-keepalive"
+Repository = "https://github.com/YadavSourabhGH/mongo-keepalive"
+
+[tool.setuptools.packages.find]
+include = ["mongo_keepalive*"]

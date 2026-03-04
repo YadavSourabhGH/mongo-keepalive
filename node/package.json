@@ -1,0 +1,26 @@
+{
+  "name": "mongo-keepalive",
+  "version": "1.0.0",
+  "description": "Keep MongoDB Atlas free-tier clusters alive by sending periodic ping commands",
+  "main": "index.js",
+  "keywords": [
+    "mongodb",
+    "atlas",
+    "keepalive",
+    "ping",
+    "free-tier"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YadavSourabhGH/mongo-keepalive.git",
+    "directory": "node"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "mongodb": "^6.0.0"
+  }
+}

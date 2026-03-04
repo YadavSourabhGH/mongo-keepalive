@@ -1,0 +1,23 @@
+{
+  "name": "YadavSourabhGH/mongo-keepalive",
+  "description": "Keep MongoDB Atlas free-tier clusters alive by sending periodic ping commands",
+  "version": "1.0.0",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.1",
+    "mongodb/mongodb": "^1.19"
+  },
+  "autoload": {
+    "psr-4": {
+      "MongoKeepAlive\\": "src/"
+    }
+  },
+  "keywords": [
+    "mongodb",
+    "atlas",
+    "keepalive",
+    "ping",
+    "free-tier"
+  ]
+}
